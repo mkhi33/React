@@ -1,43 +1,48 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import Formulario from "./components/Formulario"
+import Header from "./components/Header"
+import ListadoPacientes from "./components/ListadoPacientes"
+import React, {useState, useEffect} from "react"
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [pacientes, setPacientes] = useState([]);
+  const [paciente, setPaciente] = useState({})
+
+  const eliminarPaciente = id => {
+    const pacientesActualizados = pacientes.filter( pacienteState => pacienteState.id != id )
+    setPacientes(pacientesActualizados)
+  }
+
+  useEffect( () => {
+    const obtenerLS = () => {
+      const pacientesLS = JSON.parse(localStorage.getItem('pacientes')) ?? [];
+      setPacientes(pacientesLS)
+    }
+    obtenerLS()
+  }, [])
+
+  useEffect( ()=> {
+    localStorage.setItem('pacientes', JSON.stringify( pacientes ))
+  }, [pacientes])
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <div className="container mx-auto mt-20">
+      <Header />
+      <div className="mt-12 md:flex">
+        <Formulario 
+          pacientes = {pacientes}
+          setPacientes = {setPacientes}
+          paciente = {paciente}
+          setPaciente = {setPaciente}
+        />
+        <ListadoPacientes
+          pacientes = {pacientes}
+          setPaciente = { setPaciente }
+          eliminarPaciente = { eliminarPaciente }
+
+        />
+      </div>
+
     </div>
   )
 }
