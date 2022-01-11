@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/gitarras",
+      "handler": "gitarra.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/gitarras/count",
+      "handler": "gitarra.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/gitarras/:id",
+      "handler": "gitarra.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/gitarras",
+      "handler": "gitarra.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/gitarras/:id",
+      "handler": "gitarra.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/gitarras/:id",
+      "handler": "gitarra.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
