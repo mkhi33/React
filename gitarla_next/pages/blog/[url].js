@@ -8,7 +8,6 @@ const EntradaBlog = ({entrada}) => {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/blogs`;
 
     const {contenido, imagen, published_at, titulo} = entrada;
-
     return (
         <Layout
             pagina={titulo}
@@ -16,7 +15,10 @@ const EntradaBlog = ({entrada}) => {
             <main className="contenedor">
                 <h1 className="heading">{titulo}</h1>
                 <article className={styles.entrada}>
-                    <Image layout="responsive" width={800} height={600} src={imagen.url} alt={`Imagen Entrada ${titulo}`} />
+                    {
+                        
+                        <Image layout="responsive" width={800} height={600} src={imagen[0].url} alt={`Imagen Entrada ${titulo}`} />
+                    }
                     <div className={styles.contenido}>
                         <p className={styles.fecha}>{formatearFecha(published_at)}</p>
                         <p className={styles.texto}>{contenido}</p>

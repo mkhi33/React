@@ -32,7 +32,7 @@ export default function Home({guitarras, curso, entradas}) {
 
 export async function getServerSideProps() {
 
-  const urlGuitarras = `${process.env.API_URL}/gitarras`;
+  const urlGuitarras = `${process.env.API_URL}/guitarras`;
   const urlCursos = `${process.env.API_URL}/cursos`;
   const urlBlog = `${process.env.API_URL}/blogs?_limit=3&_sort=created_at:desc`
 

@@ -10,7 +10,10 @@ const Header = ({guitarra}) => {
                 <div className={styles.barra}>
                     <Link href='/'>
                         <a>
-                            <Image width={400} height={100} src='/img/logo.svg' alt='Imagen Logo' />
+                            {
+                                <Image width={400} height={100} src='/img/logo.svg' alt='Imagen Logo' />
+
+                            }
                         </a>
                     </Link>
                     <nav className={styles.navegacion}>
@@ -35,6 +38,7 @@ const Header = ({guitarra}) => {
 
             {router.pathname === '/' && (
                 <img className={styles.guitarra} src="/img/header_guitarra.png" alt="imagen header guitarra" />
+
             )}
         </header>
     )

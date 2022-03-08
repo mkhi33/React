@@ -1,6 +1,7 @@
 import Entrada from "./Entrada"
 import styles from '../styles/Blog.module.css'
 const ListadoBlog = ({entradas}) => {
+
     return (
         <>
             <h2 className="heading">Blog</h2>

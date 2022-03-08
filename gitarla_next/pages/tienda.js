@@ -2,7 +2,6 @@
 import Layout from '../components/Layout'
 import Listado from '../components/Listado'
 const Tienda = ({guitarras}) => {
-    console.log(guitarras)
     return (
     <Layout
         pagina='Tienda Virtual'
@@ -19,10 +18,9 @@ const Tienda = ({guitarras}) => {
 
 export async function getServerSideProps() {
 
-    const urlGuitarras = `${process.env.API_URL}/gitarras`;
+    const urlGuitarras = `${process.env.API_URL}/guitarras`;
     const respuesta = await fetch(urlGuitarras)
     const guitarras = await respuesta.json();
-    console.log(guitarras)
 
     return {
         props: {

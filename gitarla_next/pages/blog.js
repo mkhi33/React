@@ -23,6 +23,8 @@ export async function getStaticProps(){
     const respuesta = await fetch(url)
     const entradas = await respuesta.json();
 
+    console.log(entradas)
+
     return {
         props:{
             entradas

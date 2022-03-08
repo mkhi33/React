@@ -9,7 +9,10 @@ const Producto = ({guitarra}) => {
             pagina={`Guitarra ${nombre}`}
         >
             <div className={styles.guitarra}>
-                <Image layout="responsive" width={180} height={350} src={imagen.url} alt={`Imagen guitarra ${nombre}`} />
+                {
+                    <Image layout="responsive" width={180} height={350} src={imagen.url} alt={`Imagen guitarra ${nombre}`} />
+
+                }
                 <div className={styles.contenido}>
                     <h3>{nombre}</h3>
                     <p className={styles.descripcion}>{descripcion}</p>
@@ -41,7 +44,7 @@ const Producto = ({guitarra}) => {
 }
 
 export async function getServerSideProps({query:{url}}){
-    const urlGuitarra = `${process.env.API_URL}/gitarras?url=${url}`
+    const urlGuitarra = `${process.env.API_URL}/guitarras?url=${url}`
     const respuesta = await fetch(urlGuitarra);
     const guitarra = await respuesta.json();
 
