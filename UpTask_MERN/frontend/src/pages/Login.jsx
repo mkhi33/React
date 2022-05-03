@@ -18,7 +18,7 @@ const Login = () => {
                 />
             </div>
             <div className="my-5 ">
-                <label htmlFor="password" className="uppercase text-gray-600 block text-xl font-bold">Email</label>
+                <label htmlFor="password" className="uppercase text-gray-600 block text-xl font-bold">Password</label>
                 <input 
                     id="password"
                     type="password"
