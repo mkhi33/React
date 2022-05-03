@@ -1,12 +1,25 @@
-
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import AuthLayout from './layouts/AuthLayout'
+import Login from './pages/Login'
+import Registrar from './pages/Registrar'
+import OlvidePassword from './pages/OlvidePassword'
+import NuevaPassword from './pages/NuevaPassword'
+import ConfirmarCuenta from './pages/ConfirmarCuenta'
 function App() {
 
 
   return (
-    <div>
-      <h1>Desde App</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<AuthLayout />}>
+          <Route index element={<Login />} />
+          <Route path='registrar' element={<Registrar />} />
+          <Route path='olvide-password' element={<OlvidePassword />} />
+          <Route path='olvide-password/:token' element={<NuevaPassword />} />
+          <Route path='confirmar/:id' element={<ConfirmarCuenta />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
