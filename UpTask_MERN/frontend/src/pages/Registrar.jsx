@@ -1,13 +1,69 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import axios from 'axios'
+import Alerta from '../components/Alerta'
 const Registrar = () => {
+  const [ nombre, setNombre ] = useState('')
+  const [ email, setEmail ] = useState('')
+  const [ password, setPassword ] = useState('')
+  const [ repetirPassword, setRepetirPassword ] = useState('')
+  const [ alerta, setAlerta ] = useState({})
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if([ nombre, email, password, repetirPassword ].includes("")){
+      setAlerta({
+        msj: 'Todos los campos son obligatorios',
+        error:true
+      })
+      return
+    }
+    if( password !== repetirPassword ){
+      setAlerta({
+        msj: 'Los Passwords no son iguales',
+        error:true
+      })
+    }
+    if( password.length < 6 ){
+      setAlerta({
+        msj: 'El password es muy corto, agrega minimo 6 caracteres',
+        error:true
+      })
+    }
+
+    setAlerta({})
+    // Crear el usuario En la API
+    try {
+      const { data } = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/usuarios`, {nombre, email, password})
+      setAlerta({
+        msj: data.msj,
+        error: false
+      })
+
+      setNombre('')
+      setEmail('')
+      setPassword('')
+      setRepetirPassword('')
+
+    } catch (error) {
+      setAlerta({
+        msj:error.response.data.msj,
+        error: true
+      })
+    }
+  }
+
+  const { msj } = alerta;
+
   return (
     <>
+      
       <h1 className="text-sky-600 font-black text-6xl capitalize">
           Crea tu Cuenta y Administra tus 
           <span className="text-slate-700"> proyectos</span>
       </h1>
-      <form className="my-5 bg-white shadow rounded-lg p-10">
+      {msj && <Alerta alerta={alerta} />}
+      <form onSubmit={handleSubmit} className="my-5 bg-white shadow rounded-lg p-10">
           <div className="my-5 ">
               <label htmlFor="nombre" className="uppercase text-gray-600 block text-xl font-bold">Nombre</label>
               <input 
@@ -15,6 +71,8 @@ const Registrar = () => {
                   type="text"
                   placeholder="Tu Nombre"
                   className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
+                  value={nombre}
+                  onChange={ e => setNombre(e.target.value)}
               />
           </div>
           <div className="my-5 ">
@@ -24,6 +82,8 @@ const Registrar = () => {
                   type="email"
                   placeholder="Email De Registro"
                   className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
+                  value={email}
+                  onChange={ e => setEmail(e.target.value)}
               />
           </div>
           <div className="my-5 ">
@@ -33,6 +93,8 @@ const Registrar = () => {
                   type="password"
                   placeholder="Password De Registro"
                   className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
+                  value={password}
+                  onChange={ e => setPassword(e.target.value)}
               />
           </div>
           <div className="my-5 ">
@@ -42,6 +104,8 @@ const Registrar = () => {
                   type="password"
                   placeholder="Repetir tu password"
                   className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
+                  value={repetirPassword}
+                  onChange={ e => setRepetirPassword(e.target.value)}
               />
           </div>
           <input 
