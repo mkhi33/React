@@ -8,7 +8,9 @@ import ConfirmarCuenta from './pages/ConfirmarCuenta'
 import RutaProtegida from './layouts/RutaProtegida'
 import Proyectos from './pages/Proyectos'
 import NuevoProyecto from './pages/NuevoProyecto'
+
 import { AuthProvider } from './context/AuthProvider'
+import { ProyectosProvider } from './context/ProyectosProvider'
 function App() {
 
 
@@ -16,21 +18,23 @@ function App() {
 
     <BrowserRouter>
       <AuthProvider>
-        <Routes>
-          <Route path='/' element={<AuthLayout />}>
-            <Route index element={<Login />} />
-            <Route path='registrar' element={<Registrar />} />
-            <Route path='olvide-password' element={<OlvidePassword />} />
-            <Route path='olvide-password/:token' element={<NuevaPassword />} />
-            <Route path='confirmar/:id' element={<ConfirmarCuenta />} />
-          </Route>
+        <ProyectosProvider>
+          <Routes>
+            <Route path='/' element={<AuthLayout />}>
+              <Route index element={<Login />} />
+              <Route path='registrar' element={<Registrar />} />
+              <Route path='olvide-password' element={<OlvidePassword />} />
+              <Route path='olvide-password/:token' element={<NuevaPassword />} />
+              <Route path='confirmar/:id' element={<ConfirmarCuenta />} />
+            </Route>
 
-          <Route path='/proyectos' element={<RutaProtegida />}>
-            <Route index element={<Proyectos />} />
-            <Route path='crear-proyecto' element={<NuevoProyecto />} />
-          </Route>
+            <Route path='/proyectos' element={<RutaProtegida />}>
+              <Route index element={<Proyectos />} />
+              <Route path='crear-proyecto' element={<NuevoProyecto />} />
+            </Route>
 
-        </Routes>
+          </Routes>
+        </ProyectosProvider>
       </AuthProvider>
     </BrowserRouter>
   )
