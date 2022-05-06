@@ -6,18 +6,34 @@ import Alerta from './Alerta'
 
 const ModalFormularioTarea = () => {
     
-    const {  handleModalTarea, modalFormularioTarea, mostrarAlerta, alerta, submitTarea} = useProyectos()
+    const {  handleModalTarea, modalFormularioTarea, mostrarAlerta, alerta, submitTarea, tarea} = useProyectos()
     const [ nombre, setNombre ] = useState('')
     const [ fechaEntrega, setFechaEntrega ] = useState('')
     const [ prioridad, setPrioridad ] = useState('')
     const [ descripcion, setDescripcion ] = useState('')
+    const [ id, setId ] = useState(null)
     const params = useParams()
+
+    useEffect( () => {
+        if( tarea._id ){
+            setNombre(tarea.nombre)
+            setFechaEntrega(tarea.fechaEntrega.split("T")[0])
+            setPrioridad(tarea.prioridad)
+            setDescripcion(tarea.descripcion)
+            setId(tarea._id)
+            return
+        }
+        setNombre('')
+        setFechaEntrega('')
+        setPrioridad('')
+        setDescripcion('')
+    }, [tarea])
 
     const PRIORIDAD = ['Baja', 'Media', 'Alta'] 
 
     const handleSubmit = async e => {
         e.preventDefault()
-        if( [ nombre, fechaEntrega, prioridad, descripcion ].includes("") ){
+        if( [id, nombre, fechaEntrega, prioridad, descripcion ].includes("") ){
             mostrarAlerta({
                 msj:'Todos los campos son obligatorios',
                 error: true
@@ -29,6 +45,7 @@ const ModalFormularioTarea = () => {
         setFechaEntrega('')
         setPrioridad('')
         setDescripcion('')
+        setId(null)
     }
 
     const { msj } = alerta
@@ -147,7 +164,7 @@ const ModalFormularioTarea = () => {
                                             />
                                         </div>
 
-                                        <input type='submit' className="bg-sky-600 hover:bg-sky-700 w-full p-3 text-white uppercase font-bold cursor-pointer transition-colors rounded text-sm" value="Crear Tarea" />
+                                        <input type='submit' className="bg-sky-600 hover:bg-sky-700 w-full p-3 text-white uppercase font-bold cursor-pointer transition-colors rounded text-sm" value={ id ? 'Editar Tarea' : `Crear Tarea`} />
                                     </form>
 
                                 </div>
