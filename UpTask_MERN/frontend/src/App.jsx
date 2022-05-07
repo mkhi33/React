@@ -13,6 +13,7 @@ import { AuthProvider } from './context/AuthProvider'
 import { ProyectosProvider } from './context/ProyectosProvider'
 import Proyecto from './pages/Proyecto'
 import EditarProyecto from './pages/EditarProyecto'
+import NuevoColaborador from './pages/NuevoColaborador'
 
 function App() {
  
@@ -35,6 +36,7 @@ function App() {
               <Route path='crear-proyecto' element={<NuevoProyecto />} />
               <Route path=':id' element={<Proyecto />} />
               <Route path='editar/:id' element={<EditarProyecto />} />
+              <Route path='nuevo-colaborador/:id' element={<NuevoColaborador />} />
             </Route>
 
           </Routes>
