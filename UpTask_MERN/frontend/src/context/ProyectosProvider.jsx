@@ -15,6 +15,7 @@ const ProyectosProvider = ({children}) => {
     const [ modalEliminarTarea, setModalEliminarTarea ] = useState(false)
     const [ colaborador, setColaborador ] = useState({})
     const [ modalEliminarColaborador, setModalEliminarColaborador ] = useState(false)
+    const [ buscador, setBuscador ] = useState(false)
     const navigate = useNavigate();
 
     useEffect( () => {
@@ -36,6 +37,7 @@ const ProyectosProvider = ({children}) => {
         }
         obtenerProyectos()
     }, [])
+
 
     const handleModalEditarTarea =  tarea => {
         setTarea(tarea)
@@ -369,6 +371,9 @@ const ProyectosProvider = ({children}) => {
             console.log(error.response)
         }
     }
+    const handleBuscador = () => {
+        setBuscador(!buscador)
+    }
 
     return (
         <ProyectosContext.Provider
@@ -395,7 +400,9 @@ const ProyectosProvider = ({children}) => {
                 handleModalEliminarColaborador,
                 modalEliminarColaborador,
                 eliminarColaborador,
-                completarTarea
+                completarTarea,
+                handleBuscador,
+                buscador
             }}
         >
             {children}
