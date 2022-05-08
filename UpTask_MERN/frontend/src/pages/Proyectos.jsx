@@ -1,12 +1,14 @@
 import PreviewProyecto from '../components/PreviewProyecto'
 import useProyectos from '../hooks/useProyectos'
+import Alerta from '../components/Alerta'
 
 const Proyectos = () => {
-  const { proyectos, mostrarAlerta } = useProyectos()
-
+  const { proyectos, mostrarAlerta, alerta } = useProyectos()
+  const { msj } = alerta
   return (
     <>
-      <h1 className="text-4xl font-bold">Proyectos</h1>
+      <h1 className="text-4xl font-bold mb-3">Proyectos</h1>
+      {msj && <Alerta alerta={alerta} />}
       <div className='bg-white shadow rounded-lg'>
         {proyectos.length ? (
           proyectos.map( proyecto => (
