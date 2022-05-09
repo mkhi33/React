@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom"
+import useAuth from "../hooks/useAuth"
 import useProyectos from "../hooks/useProyectos"
 import Busqueda from "./Busqueda"
 const Header = () => {
-    const { handleBuscador } = useProyectos()
+    const { handleBuscador, cerrarSesionProyectos } = useProyectos()
+    const { cerrarSesionAuth } = useAuth()
+
+    const handleCerrarSesion = () => {
+        cerrarSesionAuth()
+        cerrarSesionProyectos()
+        localStorage.removeItem('token')
+
+    }
   return (
     <header className="px-4 py-5 bg-white border-b ">
         <div className="md:flex md:justify-between">
@@ -13,6 +22,7 @@ const Header = () => {
                 <button onClick={handleBuscador} className="font-bold uppercase" type="button">Buscar Proyecto</button>
                 <Link to="/proyectos" className="font-bold uppercase" >Proyectos</Link>
                 <button 
+                    onClick={handleCerrarSesion}
                     type="button"
                     className="text-white text-sm bg-sky-600 p-3 rounded-md uppercase font-bold"
                 >Cerrar Sesión</button>

@@ -1,13 +1,17 @@
 
-import { Navigate, Outlet } from "react-router-dom"
+import { Navigate, Outlet, useParams } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import { useEffect } from "react";
 const RutaProtegida = () => {
 
     const { auth, cargando } = useAuth();
-    
-    if( cargando ) return 'cargando...'
+
+    if( cargando ) {
+      return 'cargando...'
+    }
+
   return (
 
     <>

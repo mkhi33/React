@@ -83,7 +83,7 @@ const eliminarTarea = async ( req, res ) => {
     }
 
     try {
-        const proyecto = Proyecto.findById(tarea.proyecto)
+        const proyecto = await Proyecto.findById(tarea.proyecto)
         proyecto.tareas.pull(tarea._id)
 
         await Promise.allSettled([await proyecto.save(), await tarea.deleteOne()])

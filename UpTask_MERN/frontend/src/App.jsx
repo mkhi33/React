@@ -31,7 +31,7 @@ function App() {
               <Route path='confirmar/:id' element={<ConfirmarCuenta />} />
             </Route>
 
-            <Route path='/proyectos' element={<RutaProtegida />}>
+            <Route  path='/proyectos' element={<RutaProtegida />}>
               <Route index element={<Proyectos />} />
               <Route path='crear-proyecto' element={<NuevoProyecto />} />
               <Route path=':id' element={<Proyecto />} />

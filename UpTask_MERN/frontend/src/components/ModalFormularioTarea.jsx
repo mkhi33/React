@@ -15,6 +15,7 @@ const ModalFormularioTarea = () => {
     const params = useParams()
 
     useEffect( () => {
+
         if( tarea._id ){
             setNombre(tarea.nombre)
             setFechaEntrega(tarea.fechaEntrega.split("T")[0])
@@ -40,7 +41,8 @@ const ModalFormularioTarea = () => {
             })
             return
         }
-        await submitTarea({nombre, fechaEntrega, prioridad, descripcion, proyecto: params.id})
+
+        await submitTarea({id,nombre, fechaEntrega, prioridad, descripcion, proyecto: params.id})
         setNombre('')
         setFechaEntrega('')
         setPrioridad('')
