@@ -1,0 +1,52 @@
+1. instalar dependencias para usar redux:
+	npm i react-redux redux redux-thunk
+2. Crear archivos:
+	
+	- src/store.js : Encargado del state de toda la aplicación
+	- src/reducers/index.js
+	- src/reducers/productosReducer.js
+
+3. Configurando el archivo store.js
+	
+	import { createStore, applyMiddleware, compose } from 'redux'
+	import thunk from 'redux-thunk'
+	import reducer from './reducers'
+	
+4. Configurando el archivo index.js
+	
+	import { combineReducers } from 'redux'
+	import productosReducer from './productosReducer'
+
+	export default combineReducers({
+    		productos: productosReducer
+	})
+
+5. Configurando el archivo productosReducer.jsx
+	// Cada reducer tiene su propio state
+
+	const initialState = {
+    		productos: [],
+    		error: null,
+    		loading: false
+	}
+
+	export default function( state= initialState, action ) {
+    		switch (action.type) {
+        		case value:
+            
+           		 break;
+    
+        		default:
+     		       		return state;
+    		}
+	}
+
+6. Configurando el App.jsx
+	import { Provider } from 'react-redux'
+	import store from './store'
+
+	// Usar el provider
+
+	<Provider store={store}>
+		
+	<Provider>
