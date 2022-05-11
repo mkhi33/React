@@ -50,3 +50,31 @@
 	<Provider store={store}>
 		
 	<Provider>
+
+7. Crear los types: src/types/index.js
+	- Loas types se usan en el action y en el reducer
+	export const AGREGAR_PRODUCTO = 'AGREGAR_PRODUCTO';
+
+8. Crear el action: src/actions
+	productoActions.js
+
+9. uso de redux
+
+import { useDispatch, useSelector } from "react-redux"
+// Actions de redux
+import { crearNuevoProductoAction } from "../actions/productoActions"
+
+  // Utilizar useDispatch y crea una función
+  const dispatch = useDispatch()
+  const agregarProducto = () => dispatch( crearNuevoProductoAction() )
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // Validar Formulario
+
+    // Si no hay errores
+
+    // Crear el nuevo producto
+    agregarProducto()
+  }
+
