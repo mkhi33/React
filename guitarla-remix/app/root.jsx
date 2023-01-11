@@ -8,6 +8,7 @@ import {
 
 import styles from '~/styles/index.css'
 import Header from '~/components/Header'
+import Footer from '~/components/Footer'
 
 export function meta() {
     return ({
@@ -62,6 +63,7 @@ function Document({children}) {
             <body>
                 <Header />
                 {children}
+                <Footer />
                 <Scripts />
                 <LiveReload />
             </body>
