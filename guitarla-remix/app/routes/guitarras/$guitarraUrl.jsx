@@ -2,24 +2,42 @@ import { getGuitarra } from '~/models/guitarras.server'
 import { useLoaderData } from '@remix-run/react';
 import styles from '~/styles/guitarras.css';
 
+
+
+
 export function links() {
-    return {
-        rel: 'stylesheet',
+    return [
+      {
+        rel:'stylesheet',
         href: styles
+      }
+    ]
+  }
+
+export function meta({data}) {
+
+    return {
+        title: `GuitarLA - ${data.data[0].attributes.nombre}`,
+        desctiption: `Guitarras, venta de guitarras, guitarra ${data.data[0].attributes.nombre}`
     }
 }
+
+
+
 
 export async function loader({params}) {
     const { guitarraUrl } = params;
 
-    const {data} = await getGuitarra(guitarraUrl)
+    const guitarra = await getGuitarra(guitarraUrl)
 
-    return data;
+    return guitarra;
 }
 
 const Guitarra = () => {
-    const [guitarra] = useLoaderData();
-    const { nombre, descripcion, imagen, precio } = guitarra.attributes;
+    const guitarra = useLoaderData();
+
+    const { nombre, descripcion, imagen, precio } = guitarra.data[0].attributes
+
 
   return (
     <main className='contenedor guitarra'>
