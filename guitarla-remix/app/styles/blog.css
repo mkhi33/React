@@ -30,6 +30,11 @@
     margin: 0;
 }
 
+.post .fecha {
+    font-size: 1.6rem;
+    color: var(--primary)
+}
+
 .post .resumen {
     display: -webkit-box;
     -webkit-box-orient: vertical;
