@@ -64,8 +64,13 @@
 
 .header .navegacion {
   display: flex;
+  align-items: center;
   gap: 2rem;
   margin-top: 5rem;
+}
+
+.header .navegacion img {
+  width: 3rem;
 }
 
 @media (min-width: 768px) {
@@ -127,6 +132,9 @@
   font-size: 2.2rem;
 }
 
+.footer .navegacion a:last-of-type {
+  display: none;
+}
 .footer .copyright {
   text-align: center;
 }
