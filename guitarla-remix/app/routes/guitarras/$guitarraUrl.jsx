@@ -1,5 +1,6 @@
 import { getGuitarra } from '~/models/guitarras.server'
 import { useLoaderData } from '@remix-run/react';
+import { useState } from 'react';
 
 
 export async function loader({params}) {
@@ -31,10 +32,27 @@ export function meta({data}) {
 }
 
 const Guitarra = () => {
-    const guitarra = useLoaderData();
 
+  const [ cantidad, setCantidad ] = useState(0);
+
+    const guitarra = useLoaderData();
     const { nombre, descripcion, imagen, precio } = guitarra.data[0].attributes
 
+  const handleSubmit = (e) => { 
+    e.preventDefault()
+    if( cantidad < 1 ) {
+      alert('Debe seleccionar una cantidad')
+      return
+    }
+
+    const guitarraSeleccionada = {
+      id: guitarra.data[0].id,
+      imagen: imagen.data.attributes.url,
+      nombre,
+      precio,
+      cantidad
+    }
+  }
 
   return (
     <div className='guitarra'>
@@ -43,6 +61,19 @@ const Guitarra = () => {
             <h3>{nombre}</h3>
             <p className='descripcion'>{descripcion}</p>
             <p className='precio'>${precio}</p>
+            <form onSubmit={handleSubmit} className='formulario'>
+              <label htmlFor="">Cantidad</label>
+              <select onChange={ (e) => setCantidad(parseInt(e.target.value))}>
+                <option value="">-- Seleccione --</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+
+              <input type="submit" value="Agregar al carrito" />
+            </form>
         </div>
     </div>
   )
