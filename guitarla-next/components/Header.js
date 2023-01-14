@@ -13,8 +13,8 @@ const Header = () => {
           <nav className={styles.navegacion}>
               <Link className={router.pathname === '/' ? styles.active : ''} href='/'>Inicio</Link>
               <Link className={router.pathname === '/nosotros' ? styles.active : ''} href='/nosotros'>Nosotros</Link>
-              <Link className={router.pathname === '/blog' ? styles.active : ''} href='/blog'>Blog</Link>
               <Link className={router.pathname === '/tienda' ? styles.active : ''} href='/tienda'>Tienda</Link>
+              <Link className={router.pathname === '/blog' ? styles.active : ''} href='/blog'>Blog</Link>
           </nav>
       </div>
     </header>
