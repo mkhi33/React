@@ -2,7 +2,8 @@ import Layout from '@/components/Layout'
 import Guitarra from '@/components/Guitarra'
 import styles from '@/styles/Grid.module.css'
 import Post from '@/components/Post'
-export default function Home({guitarras, posts}) {
+import Curso from '@/components/Curso'
+export default function Home({guitarras, posts, curso}) {
   return (
     <>
       <Layout title={'Inicio'} description='Blog de música, venta de guitarras y más' >
@@ -16,6 +17,7 @@ export default function Home({guitarras, posts}) {
               ))}
           </div>
         </main>
+        <Curso curso={curso.attributes} />
         <section>
           <h2 className='heading'>Blog</h2>
 
@@ -29,15 +31,17 @@ export default function Home({guitarras, posts}) {
 export async function getStaticProps() {
   const urlGuitarras = `${process.env.API_URL}/guitarras?populate=imagen`
   const urlBlogs = `${process.env.API_URL}/posts?populate=imagen`
+  const urlCurso = `${process.env.API_URL}/curso?populate=imagen`
 
-  const [resGuitarras, resBlogs] = await Promise.all([fetch(urlGuitarras), fetch(urlBlogs)])
+  const [resGuitarras, resBlogs, resCurso] = await Promise.all([fetch(urlGuitarras), fetch(urlBlogs), fetch(urlCurso)])
 
-  const [{data:guitarras}, {data: posts}] = await Promise.all([resGuitarras.json(), resBlogs.json()])
+  const [{data:guitarras}, {data: posts}, {data:curso}] = await Promise.all([resGuitarras.json(), resBlogs.json(), resCurso.json()])
 
   return {
     props: {
       guitarras,
-      posts
+      posts,
+      curso
     }
   }
 }
