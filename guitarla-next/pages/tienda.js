@@ -3,7 +3,6 @@ import Layout from "@/components/Layout"
 import styles from '@/styles/Grid.module.css'
 
 const Tienda = ({guitarras}) => {
-  console.log(guitarras)
   return (
     <Layout title={'Tienda'} description="Tienda virtual, venta de guitarras, instrumentos, GuitarLA">
       <main className="contenedor">
