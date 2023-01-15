@@ -8,7 +8,7 @@ const Guitarra = ({guitarra}) => {
 
   return (
     <div className={styles.guitarra}>
-      <Image src={imagen?.data.attributes?.formats?.medium?.url} alt={`Imagen de guitarra ${nombre}`} width={600} height={400} />
+      <Image src={imagen?.data.attributes?.url} alt={`Imagen de guitarra ${nombre}`} width={600} height={400} />
       <div className={styles.contenido}>
         <h3>{nombre}</h3>
         <p className={styles.descripcion}>{descripcion}</p>
