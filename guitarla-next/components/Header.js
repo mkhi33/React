@@ -17,7 +17,7 @@ const Header = () => {
               <Link className={router.pathname === '/nosotros' ? styles.active : ''} href='/nosotros'>Nosotros</Link>
               <Link className={router.pathname === '/tienda' ? styles.active : ''} href='/tienda'>Tienda</Link>
               <Link className={router.pathname === '/blog' ? styles.active : ''} href='/blog'>Blog</Link>
-              <Link href='carrito'>
+              <Link href='/carrito'>
                 <Image src={carrito} alt='Imagen carrito' width={30} height={25} />
               </Link>
           </nav>
