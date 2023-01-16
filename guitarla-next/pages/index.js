@@ -7,7 +7,7 @@ export default function Home({guitarras, posts, curso}) {
   return (
     <>
       <Layout title={'Inicio'} description='Blog de música, venta de guitarras y más' >
-        <main>
+        <main className='contenedor'>
           <h1 className='heading'>Nuestra colección</h1>
           <div className={styles.grid}>
             {guitarras?.map( guitarra => ( 
@@ -18,7 +18,7 @@ export default function Home({guitarras, posts, curso}) {
           </div>
         </main>
         <Curso curso={curso.attributes} />
-        <section>
+        <section className='contenedor'>
           <h2 className='heading'>Blog</h2>
 
           <div className={styles.grid}>{posts?.map( post => ( <Post key={post.id} post={post.attributes} />) )}</div>
