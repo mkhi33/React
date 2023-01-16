@@ -6,6 +6,11 @@ export default function App({ Component, pageProps }) {
   const carritoLs = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('carrito') ) ?? [] : [];
 
   const [ carrito, setCarrito ] = useState(carritoLs)
+  const [ cargando, setCargando ] = useState(true)
+
+  useEffect( () => {
+    setCargando(false)
+  }, [])
 
   useEffect( () => {
     localStorage.setItem('carrito', JSON.stringify( carrito ));
@@ -49,7 +54,7 @@ const actualizarCantidad = guitarra => {
   window.localStorage.setItem('carrito', JSON.stringify( carrito ));
 }
 
-  return <Component {...pageProps}
+  return cargando ? null : <Component {...pageProps}
     carrito={carrito}
     agregarCarrito={agregarCarrito}
     eliminarProducto={eliminarProducto}
