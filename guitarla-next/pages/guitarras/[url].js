@@ -3,7 +3,7 @@ import Layout from '@/components/Layout'
 import styles from '@/styles/Guitarras.module.css'
 import Image from 'next/image'
 import { useState } from 'react'
-const Producto = ({guitarra}) => {
+const Producto = ({guitarra, agregarCarrito}) => {
 
     const [ cantidad, setCantidad ] = useState(0)
 
@@ -22,6 +22,9 @@ const Producto = ({guitarra}) => {
             precio,
             cantidad
         }
+
+        agregarCarrito(guitarraSeleccionada)
+
     }
   return (
     <Layout
