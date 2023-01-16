@@ -14,6 +14,23 @@ const Producto = ({guitarra}) => {
                 <h3>{nombre}</h3>
                 <p className={styles.descripcion}>{descripcion}</p>
                 <p className={styles.precio}>${precio}</p>
+
+                <form className={styles.formulario}>
+                    <label htmlFor="cantidad">Cantidad</label>
+                    <select name="cantidad" id="cantidad">
+                        <option value="">--Seleccione --</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        
+                    </select>
+
+                    <input type='submit' value='Agregar al carrito' />
+
+                </form>
+
             </div>
         </div>
     </Layout>
