@@ -7,7 +7,6 @@ import carrito from '@/public/img/carrito.png'
 const Header = () => {
 
   const router = useRouter()
-  console.log(router.pathname)
   return (
     <header className={styles.header}>
       <div className={`contenedor ${styles.barra}`}>
