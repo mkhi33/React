@@ -2,8 +2,12 @@ import Error from "@/components/Error"
 import Layout from "@/components/Layout"
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useContext, useEffect } from "react"
+import authContext from "@/context/auth/authContext"
 
 const Signin = () => {
+    const AuthContext = useContext(authContext)
+    const { userAuthenticated } = AuthContext
     const formik = useFormik({
         initialValues:{
             name: '',
@@ -17,6 +21,7 @@ const Signin = () => {
         }),
         onSubmit: values => {
             console.log(values)
+
         }
 
     })
