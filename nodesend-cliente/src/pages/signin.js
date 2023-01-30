@@ -7,7 +7,7 @@ import authContext from "@/context/auth/authContext"
 
 const Signin = () => {
     const AuthContext = useContext(authContext)
-    const { userAuthenticated } = AuthContext
+    const { registerUser } = AuthContext
     const formik = useFormik({
         initialValues:{
             name: '',
@@ -19,8 +19,8 @@ const Signin = () => {
             email: Yup.string().email('El email no es válido').required('El email es obligatorio'),
             password: Yup.string().required('El password es obligatorio').min(6, 'El password debe ser de al menos 6 caracteres')
         }),
-        onSubmit: values => {
-            console.log(values)
+        onSubmit: async values => {
+            await registerUser(values)
 
         }
 
