@@ -2,6 +2,7 @@ import authContext from "./authContext";
 import { useReducer } from "react";
 import authReducer from "./authReducer";
 import { USER_AUTHENTICATED } from "@/types";
+import axiosClient from "@/config/axios";
 const AuthState = ({children}) => {
 
     const initialState = {
@@ -13,8 +14,17 @@ const AuthState = ({children}) => {
 
     const [ state, dispatch ] = useReducer(authReducer, initialState);
 
+    const registerUser = async (data) => {
+        try {
+            const response = await axiosClient.post('/users', data);
+            console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const userAuthenticated = (name) => {
-        console.log("Desde state")
+        
         dispatch({
             type: USER_AUTHENTICATED,
             payload: name
@@ -28,7 +38,8 @@ const AuthState = ({children}) => {
                 authenticated: state.authenticated,
                 user: state.user,
                 message: state.message,
-                userAuthenticated: userAuthenticated
+                userAuthenticated,
+                registerUser
             }}
         >
             {children}
