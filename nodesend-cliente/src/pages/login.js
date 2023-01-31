@@ -7,7 +7,7 @@ import { useContext, useEffect } from "react"
 import Alert from "@/components/Alert"
 import { useRouter } from "next/router"
 const Login = () => {
-    const { authUser, message, authenticated } = useContext(authContext)
+    const { authUser, message, authenticated, error } = useContext(authContext)
     const router = useRouter()
     useEffect( () => {
         if( authenticated ) {
@@ -34,7 +34,7 @@ const Login = () => {
     <Layout >
         <div className="md:w-4/5 w-3/5 mx-auto mb-32"></div>
         <h2 className="text-4xl font-sans font-bold text-gray-800 text-center my-4">Iniciar Sesión</h2>
-        {message && <Alert />}
+        {message && <Alert message={message} error={error} />}
         <div className="flex justify-center mt-5">
             <div className="w-full max-w-lg">
                 <form
