@@ -10,6 +10,7 @@ import {
     UPLOAD_FILE,
     SUCCESSFULLY_CREATE_LINK,
     ERROR_CREATE_LINK,
+    CLEAN_STATE
  } from '../../types';
 
 const AppState = ({children}) => {
@@ -43,6 +44,16 @@ const AppState = ({children}) => {
     }
 
     const uploadFile = async (formData, original_name) => {
+        const file = formData.get('file');
+
+        if( !file.name ) {
+            dispatch({
+                type: ERROR_UPLOAD_FILE,
+                payload: "No se puede subir el archivo, nombre de archivo vacio o posee caracteres no válidos"
+            })
+            return
+        }
+
         dispatch({
             type: UPLOAD_FILE
 
@@ -84,6 +95,13 @@ const AppState = ({children}) => {
         }
     }
 
+    const cleanState = () => {
+        console.log('cleanState');
+        dispatch({
+            type: CLEAN_STATE
+        })
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -94,6 +112,7 @@ const AppState = ({children}) => {
                 showAlert,
                 uploadFile,
                 createLink,
+                cleanState
 
             }}
         >

@@ -7,6 +7,8 @@ const Layout = ({children}) => {
     <>
         <Head>
             <title>ReactNodeSend</title>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
         </Head>
         <div className='bg-gray-100 min-h-screen'>
             <div className="container mx-auto">

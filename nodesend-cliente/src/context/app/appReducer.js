@@ -5,7 +5,8 @@ import {
     ERROR_UPLOAD_FILE,
     UPLOAD_FILE,
     SUCCESSFULLY_CREATE_LINK,
-    ERROR_CREATE_LINK
+    ERROR_CREATE_LINK,
+    CLEAN_STATE
  } from '../../types';
 
 export default ( state, action ) => {
@@ -50,6 +51,19 @@ export default ( state, action ) => {
                 ...state,
                 url: action.payload,
                 loading: false
+            }
+
+        case CLEAN_STATE:
+            return {
+                message_file: null,
+                error: null,
+                name: '',
+                original_name: '',
+                loading: false,
+                downloads: 1,
+                password: '',
+                author: null,
+                url: ''
             }
         
     

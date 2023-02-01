@@ -12,6 +12,8 @@ const Dropzone = () => {
         const formData = new FormData();
         formData.append('file', acceptedFiles[0]);
 
+        console.log(acceptedFiles)
+
         uploadFile(formData, acceptedFiles[0].path);
 
     }, [])
@@ -19,9 +21,12 @@ const Dropzone = () => {
     const onDropRejected = () => {
         showAlert('No se pudo subir el archivo, el límite es de 1MB, obtén una cuenta gratis para subir archivos más grandes');
     }
+
+    const handleChange = e => {
+        console.log(e.target.files[0])
+    }
     
     const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({onDropAccepted, onDropRejected, maxSize:1000000})
-
     const files = acceptedFiles.map( file => (
         <li key={file.lastModified} className='bg-white flex-1 p-3 mb-4 shadow-lg rounded'>
             <p className='font-bold text-xl'>{file.path}</p>
