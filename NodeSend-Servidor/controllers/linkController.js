@@ -38,7 +38,7 @@ exports.newLink = async (req, res, next) => {
 }
 
 exports.getLink = async (req, res, next) => {
-    const { url, downloads, name } = req.params;
+    const { url } = req.params;
 
     const link = await Link.findOne({ url });
     if(!link) {
@@ -46,14 +46,18 @@ exports.getLink = async (req, res, next) => {
         return next();
     }
 
-    if( downloads === 1 ) {
-        req.file = name
-        await Link.findOneAndRemove({ url });
-        next();
-    }else {
-        link.downloads--;
-        await link.save();
-    }
+
     res.json({file: link.name});
 
+    next();
+
+}
+
+exports.allLinks = async (req, res) => {
+    try {
+        const links = await Link.find({}).select('url -_id');
+        res.json({ links });
+    } catch (error) {
+        console.log(error);
+    }
 }

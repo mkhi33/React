@@ -14,6 +14,8 @@ const port = process.env.PORT || 4000;
 
 app.use(express.json({ extended: true }));
 
+app.use(express.static('uploads'))
+
 connectDB();
 
 // App routes

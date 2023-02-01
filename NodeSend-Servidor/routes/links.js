@@ -10,10 +10,12 @@ router.post('/',
     auth, linkController.newLink
 )
 
+router.get('/',
+    linkController.allLinks
+)
+
 router.get('/:url',
-    auth,
-    linkController.getLink,
-    fileController.deleteFile
+    linkController.getLink
 )
 
 module.exports = router;
