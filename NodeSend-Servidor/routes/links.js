@@ -15,7 +15,10 @@ router.get('/',
 )
 
 router.get('/:url',
+    linkController.hasPassword,
     linkController.getLink
 )
+
+router.post('/:url', linkController.verifyPassword, linkController.getLink)
 
 module.exports = router;

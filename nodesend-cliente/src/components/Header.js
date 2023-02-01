@@ -17,9 +17,11 @@ const Header = () => {
   const router = useRouter();
 
   useEffect(() => {
-    userAuthenticated();
+    const token = localStorage.getItem("token");
+    if (token) {
+      userAuthenticated();
+    }
   }, []);
-  
   
   const redirect = () => {
     router.push("/");

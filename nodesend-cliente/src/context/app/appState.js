@@ -10,7 +10,9 @@ import {
     UPLOAD_FILE,
     SUCCESSFULLY_CREATE_LINK,
     ERROR_CREATE_LINK,
-    CLEAN_STATE
+    CLEAN_STATE,
+    ADD_PASSWORD,
+    ADD_DOWNLOADS
  } from '../../types';
 
 const AppState = ({children}) => {
@@ -96,9 +98,22 @@ const AppState = ({children}) => {
     }
 
     const cleanState = () => {
-        console.log('cleanState');
         dispatch({
             type: CLEAN_STATE
+        })
+    }
+
+    const addPassword = (password) => {
+        dispatch({
+            type: ADD_PASSWORD,
+            payload: password
+        })
+    }
+
+    const addDownloads = (maxOfDownloads) => {
+        dispatch({
+            type: ADD_DOWNLOADS,
+            payload: maxOfDownloads
         })
     }
 
@@ -112,7 +127,9 @@ const AppState = ({children}) => {
                 showAlert,
                 uploadFile,
                 createLink,
-                cleanState
+                cleanState,
+                addPassword,
+                addDownloads
 
             }}
         >

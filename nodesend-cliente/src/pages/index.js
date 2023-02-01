@@ -14,7 +14,10 @@ export default function Home() {
   const { message_file, error, url } = AppContext;
 
   useEffect(() => {
-    userAuthenticated();
+    const token = localStorage.getItem('token');
+    if(token) {
+      userAuthenticated();
+    }
   }, []);
   return (
     <Layout>
